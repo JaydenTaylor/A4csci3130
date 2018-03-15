@@ -13,7 +13,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends Activity {
 
-
     private ListView contactListView;
     private FirebaseListAdapter<Contact> firebaseAdapter;
 
@@ -27,7 +26,7 @@ public class MainActivity extends Activity {
 
         //Set-up Firebase
         appData.firebaseDBInstance = FirebaseDatabase.getInstance();
-        appData.firebaseReference = appData.firebaseDBInstance.getReference("contacts");
+        appData.firebaseReference = appData.firebaseDBInstance.getReference("Businesses");
 
         //Get the reference to the UI contents
         contactListView = (ListView) findViewById(R.id.listView);
@@ -52,16 +51,32 @@ public class MainActivity extends Activity {
         });
     }
 
+    /**
+     *
+     * @return count of elements
+     */
+    public int getCount() {
+        return firebaseAdapter.getCount();
+    }
+
+    /**
+     * Description: Starts CreatContactActivity
+     * @param v Current view
+     */
     public void createContactButton(View v)
     {
         Intent intent=new Intent(this, CreateContactAcitivity.class);
         startActivity(intent);
     }
 
+    /**
+     * Description: Shows detail view to allow for update/delete
+     * @param person Selected business to be added
+     */
     private void showDetailView(Contact person)
     {
         Intent intent = new Intent(this, DetailViewActivity.class);
-        intent.putExtra("Contact", person);
+        intent.putExtra("Business", person);
         startActivity(intent);
     }
 

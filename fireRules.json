@@ -2,15 +2,24 @@
   "rules": {
     ".read": "true",
     ".write": "true",
-    "contacts": {
-            "$contact": {
-                "name": {
-                    ".validate": "newData.isString() && newData.val().length < 50"
-                },
-                "email": {
-                    ".validate": "newData.isString() && newData.val().matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$/i)"
-                }
-            }
+    "businesses": {
+      "$business": {
+        "businessNum": {
+          ".validate": "newData.isNumber() && newData.val().length == 9"
+        },
+        "name": {
+          ".validate": "newData.isString() && newData.val().length >= 2 && newData.val().length <= 48"
+        },
+        "primaryBusiness": {
+          ".validate": "newData.isString() && (newData.val().matches(/Fisher/) || newData.val().matches(/Distributor/) || newData.val().matches(/Processor/) || newData.val().matches(/Fish Monger/))"
+        },
+        "address": {
+          ".validate": "newData.isString() && newData.val().length < 50"
+        },
+        "prov":{
+          ".validate": "newData.isString() && newData.val().length == 2 && (newData.val().matches(/AB/) || newData.val().matches(/BC/) || newData.val().matches(/MB/) || newData.val().matches(/NB/) || newData.val().matches(/NL/) || newData.val().matches(/NS/) || newData.val().matches(/NT/) || newData.val().matches(/NU/) || newData.val().matches(/ON/) || newData.val().matches(/PE/) || newData.val().matches(/QC/) || newData.val().matches(/SK/) || newData.val().matches(/YT/))"
         }
+      }
+    }
   }
 }
